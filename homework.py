@@ -50,10 +50,7 @@ def send_message(bot, message):
 
 
 def get_api_answer(current_timestamp):
-    """Делает запрос к эндпоинту API Практикум.Домашка.
-    В качестве параметра функция получает временную метку.
-    В случае успешного запроса должна вернуть ответ API,
-    преобразовав его из формата JSON к типам данных Python."""
+    """Делает запрос к эндпоинту API Практикум.Домашка."""
     timestamp = current_timestamp
     params = {'from_date': timestamp}
 
@@ -129,8 +126,7 @@ def parse_status(homework):
 
 
 def check_tokens():
-    """Проверяет доступность переменных окружения, которые
-    необходимы для работы программы."""
+    """Проверяет доступность переменных окружения."""
     env_var_list = [PRACTICUM_TOKEN, TELEGRAM_TOKEN, TELEGRAM_CHAT_ID]
     if all(env_var_list):
         return True
@@ -139,6 +135,7 @@ def check_tokens():
 
 
 def wake_up(update, context):
+    """Отправка стартового сообщения после запуска бота."""
     chat = update.effective_chat
     name = update.message.chat.first_name
     context.bot.send_message(chat_id=chat.id,
