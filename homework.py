@@ -151,14 +151,12 @@ def main():
     current_timestamp = int(time.time())
 
     updater = Updater(token=TELEGRAM_TOKEN)
-    # updater.dispatcher.add_handler(CommandHandler('start', wake_up))
+    updater.dispatcher.add_handler(CommandHandler('start', wake_up))
 
     prev_message = ''
 
     while check_tokens():
         try:
-            # updater = Updater(token=TELEGRAM_TOKEN)
-            updater.dispatcher.add_handler(CommandHandler('start', wake_up))
             response = get_api_answer(current_timestamp)
             homework = check_response(response)[0]
             message = parse_status(homework)
